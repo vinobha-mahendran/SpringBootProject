@@ -22,4 +22,62 @@ public class StudentService {
         return students;
     }
 
+    public Student getStudentByRno(int rno){
+        int index = 0;
+        boolean found = false;
+        for(int i=0; i<students.size();i++){
+            if(students.get(i).getRno() == rno){
+                index = i;
+                found = true;
+                break;
+            }
+        }
+        if(found){
+           return students.get(index);
+        }else{
+            return new Student(0,"","","");
+        }
+
+    }
+
+    public void createStudent(Student student){
+        students.add(student);
+    }
+
+    public String updateStudent(Student student){
+        int index = 0;
+        boolean found = false;
+        for(int i=0; i<students.size();i++){
+            if(students.get(i).getRno()==student.getRno()){
+                index = i;
+                found = true;
+                break;
+            }
+        }
+        if(found){
+            students.set(index, student);
+            return "Update Successfully.";
+        }else{
+            return "No matching data found...";
+        }
+    }
+
+    public String deleteStudent(int rno){
+        int index = 0;
+        boolean found = false;
+        for(int i=0; i<students.size();i++){
+            if(students.get(i).getRno()==rno){
+                index = i;
+                found = true;
+                break;
+            }
+        }
+        if(found){
+            students.remove(index);
+            return "Deleted Successfully.";
+        }else{
+            return "No matching data found...";
+        }
+    }
+
 }
